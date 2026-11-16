@@ -99,7 +99,7 @@ SESSION_STRING = os.getenv("SESSION_STRING")
 if not SESSION_STRING:
     raise ValueError("SESSION_STRING is missing in Railway Variables")
 
-bot = TelegramClient(
+bot = TelegramClient()
     StringSession(SESSION_STRING),
     API_ID,
     API_HASH,
