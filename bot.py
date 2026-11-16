@@ -7,7 +7,7 @@
 #                 STANDARD LIB
 
 # ────────────────────────────────────────────────
-
+from telethon.sessions import StringSession
 import asyncio
 
 import os
