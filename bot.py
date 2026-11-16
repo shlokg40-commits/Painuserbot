@@ -7984,7 +7984,6 @@ async def main():
 
 
     async def main():
-    try:
         await bot.connect()
 
         if not await bot.is_user_authorized():
