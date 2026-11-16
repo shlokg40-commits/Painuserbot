@@ -7983,74 +7983,52 @@ async def main():
         me = await bot.get_me()
 
 
-await bot.connect()
+async def main():
+    try:
+        await bot.connect()
 
-if not await bot.is_user_authorized():
-    raise RuntimeError("SESSION_STRING is not authorized")
+        if not await bot.is_user_authorized():
+            raise RuntimeError("SESSION_STRING is not authorized")
 
+        me = await bot.get_me()
 
-
-
+        uname = f"@{me.username}" if me.username else "NoUsername"
 
         print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-
         print("🤖 USERBOT STARTED SUCCESSFULLY")
-
         print(f"👤 Logged in as → {me.first_name} ({uname})")
-
         print(f"🆔 User ID → {me.id}")
-
         print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-
-
-
-        # ⭐ connection watchdog
 
         while True:
-
             try:
-
                 await bot.run_until_disconnected()
-
                 break
-
             except (ConnectionError, OSError):
-
                 print("⚠️ Connection Lost → Reconnecting...")
-
                 await asyncio.sleep(3)
 
-
-
     except KeyboardInterrupt:
-
         print("\n🛑 Userbot stopped manually")
 
-
-
     except Exception as e:
-
         print(f"\n❌ Startup Error → {str(e)[:80]}")
 
-
-
     finally:
-
         try:
-
             if bot.is_connected():
-
                 await bot.disconnect()
-
-        except:
-
+        except Exception:
             pass
 
 
-
-
-
 if __name__ == "__main__":
+    try:
+        asyncio.run(main())
+    except RuntimeError:
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(main())
+    
 
     try:
 
