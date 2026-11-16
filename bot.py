@@ -97,7 +97,7 @@ OWNER_ID = 8972907906
 SESSION_STRING = os.getenv("SESSION_STRING")
 
 if not SESSION_STRING:
-    raise ValueError("SESSION_STRING missing in Railway Variables")
+    raise ValueError("SESSION_STRING")
 
 bot = TelegramClient(
     StringSession(SESSION_STRING),
