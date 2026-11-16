@@ -7980,12 +7980,6 @@ async def main():
 
 
 
-        me = await bot.get_me()
-
-
-    async def main():
-        await bot.connect()
-
         if not await bot.is_user_authorized():
             raise RuntimeError("SESSION_STRING is not authorized")
 
