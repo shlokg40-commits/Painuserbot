@@ -94,27 +94,20 @@ API_HASH = "bc8bb443e8d083b053d681bc7a185b42"
 
 OWNER_ID = 8972907906
 
-SESSION = "pain_userbot"
+SESSION_STRING = os.getenv("SESSION_STRING")
 
-
+if not SESSION_STRING:
+    raise ValueError("SESSION_STRING is missing in Railway Variables")
 
 bot = TelegramClient(
-
-    SESSION,
-
+    StringSession(SESSION_STRING),
     API_ID,
-
     API_HASH,
-
     auto_reconnect=True,
-
     connection_retries=10,
-
     retry_delay=3
 
-)
-
-
+    
 
 # ────────────────────────────────────────────────
 
@@ -7991,8 +7984,12 @@ async def main():
         me = await bot.get_me()
 
 
+await bot.connect()
 
-        uname = f"@{me.username}" if me.username else "NoUsername"
+if not await bot.is_user_authorized():
+    raise RuntimeError("SESSION_STRING is not authorized")
+
+
 
 
 
