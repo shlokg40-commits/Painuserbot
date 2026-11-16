@@ -7983,7 +7983,7 @@ async def main():
         me = await bot.get_me()
 
 
-async def main():
+    async def main():
     try:
         await bot.connect()
 
